@@ -79,7 +79,9 @@ if (a==false) { conecciondb();
  pst.executeUpdate();
 //Llama al procedimiento alamcenado de la tabla HORARIO
 CallableStatement cst = db.prepareCall("call totalhoraextra()");
-
+cst.execute();
+PreparedStatement pstnt = db.prepareStatement("select max(id_horario) from horario where total_hora is null");
+rs=pstnt.executeQuery();
 JOptionPane.showMessageDialog(null,"Su transacción se realizó con éxito, se efectuó el COMMIT");}
 }
 catch (SQLException e) {JOptionPane.showMessageDialog(null,"Su transacción no se realizó, se efectuó el ROLLBACK");}}
