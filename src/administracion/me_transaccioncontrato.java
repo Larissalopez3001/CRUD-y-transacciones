@@ -76,6 +76,10 @@ idcontrat=Integer.valueOf(transaccion_contrato.a5.getText());
 pst.executeUpdate();
 //Llama al procedimiento alamcenado de la tabla CONTRATO
 CallableStatement cst = db.prepareCall("totalsueldo()");
+cst.execute();
+PreparedStatement pstnt = db.prepareStatement("select max(id_contrato) from contrato where total_sueldo is null ");
+rs=pstnt.executeQuery();
+rs.close();
 JOptionPane.showMessageDialog(null,"Su transacción se realizó con éxito, se efectuó el COMMIT");}
 }catch (SQLException e) {JOptionPane.showMessageDialog(null,"Su transacción no se realizó, se efectuó el ROLLBACK");}}
 }
